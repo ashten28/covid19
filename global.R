@@ -34,8 +34,8 @@ sheets_deauth()
 gsheets_url <- "https://docs.google.com/spreadsheets/d/1P3PbK_c2V_k2H2xv4FnbpErmE5AjOQV0MC4_BsguFR0/edit?usp=sharing"
 
 # read covid19 
-daily_num_cases <- 
-  read_sheet(as_id(gsheets_url), sheet = "daily_num_cases")
+daily_confirmed <- 
+  read_sheet(as_id(gsheets_url), sheet = "daily_confirmed")
 
-glimpse(daily_num_cases)
+glimpse(daily_daily_confirmed)
 
