@@ -3,10 +3,12 @@
 
 # options(shiny.launch.browser = TRUE)
 
+
+
 # r packages used
 rpkgs <- 
   c("dplyr", "stringr", "shiny", "scales", "shinydashboard", "shinythemes", "shinyWidgets", "shinyjs", 
-    "googledrive", "googlesheets4")
+    "googledrive", "googlesheets4", "data.table")
 
 # install r packages that have not been installed
 rpkgs_to_install <- 
@@ -19,6 +21,7 @@ for (pkg in rpkgs){
   suppressMessages(library(pkg, character.only = T))
   
 }
+
 
 # theme pallete
 theme_pallete <- 
@@ -35,7 +38,10 @@ gsheets_url <- "https://docs.google.com/spreadsheets/d/1P3PbK_c2V_k2H2xv4FnbpErm
 
 # read covid19 
 daily_num_cases <- 
-  read_sheet(as_id(gsheets_url), sheet = "daily_num_cases")
+  read_sheet(as_id(gsheets_url), sheet = "daily_confimed")
 
 glimpse(daily_num_cases)
 
+daily_num_cases <- data.table(daily_num_cases)
+
+x <- daily_num_cases %>% group_by(`Country/Region`) %>% summarise(cumulative = sum(`04/03/2020`))
