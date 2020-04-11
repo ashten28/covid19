@@ -10,40 +10,44 @@ fluidPage(useShinyjs(),
                      windowTitle = "Covid19"),
                    style = "text-align:left; display:inline; margin-left:0"
             )
-          ),
+            
+            # ,column(1, class ="dropdown", loadingLogo('./img/cv19pic2.png', './img/loading.gif', height = 80, width = 80), style="float:right; margin-top:20px")
+            
+            
+            ),
           
           br(),
-          br(),
+          # br(),
           
           fluidRow(
-            column(6, 
+            column(12, 
                    wellPanel(
-                     fluidRow(
-                       column(11, 
-                              h3("Covid19", style = "text-decoration:underline")
-                       )
-                       
-                     ),
+                     # h3("Confirmed cases", style = "text-decoration:underline"),
+                     h3("Confirmed, deaths and recovered cases", style = ""),
                      br(),
                      fluidRow(
                        column(2, 
                               pickerInput(
                                 # width = "100%",
-                                inputId = "location",
-                                label = "Location:",
-                                choices = c("Canada", "More coming soon"),
+                                inputId = "country",
+                                label = "Country:",
+                                # choices = c("Canada", "More coming soon"),
+                                choices = countries_list,
                                 selected = "Canada",
-                                multiple = F,
-                                choicesOpt = list(
-                                  disabled = c("Canada", "More coming soon") %in% c("More coming soon")
-                                )
+                                multiple = F
+                                # choicesOpt = list(
+                                #   disabled = c("Canada", "More coming soon") %in% c("More coming soon")
+                                # )
                               )
-                       )
+                       ),
                        
+                       column(6,
+                              plotOutput("summary_plot")
+                              
+                              )
                        
-                     )
-                     
-                     
+                     ),
+                     br()
                      
                    )
             )
