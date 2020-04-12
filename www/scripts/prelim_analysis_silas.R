@@ -64,7 +64,7 @@ check_out$first_date <- min(check_out$report_date)
 check_out$day_dff <- as.Date(as.character(check_out$report_date), format="%Y-%m-%d")-
                           as.Date(as.character(check_out$first_date), format="%Y-%m-%d")
 
-
+#The number of cases "7" is very suspesious. Changed it to 400 based on the data I have.
 check_out$inc_confirmed[38] <- 400
 #cubic spline
 fit<-lm(inc_confirmed ~ bs(day_dff,knots = c(43,50,65)),data = check_out )
@@ -91,7 +91,7 @@ plot(check_out$day_dff,check_out$inc_confirmed,col="grey",xlab="incremental Days
 points(day_dff_grid,predict(fit,newdata = list(day_dff=day_dff_grid)),col="darkgreen",lwd=2,type="l")
 
 #adding cutpoints
-abline(v=c(25,40,60),lty=2,col="darkgreen")
+abline(v=c(43,50,65),lty=2,col="darkgreen")
 lines(fit1,col="red",lwd=2)
 legend("topright",c("Smoothing Spline with 16 df","Cubic Spline"),col=c("red","darkgreen"),lwd=2)
 
