@@ -23,7 +23,7 @@ fluidPage(useShinyjs(),
             column(12, 
                    wellPanel(
                      # h3("Confirmed cases", style = "text-decoration:underline"),
-                     h3("Confirmed, deaths and recovered cases", style = ""),
+                     h3("Confirmed, deaths and recovered cases - incremental", style = ""),
                      br(),
                      fluidRow(
                        column(2, 
@@ -42,9 +42,47 @@ fluidPage(useShinyjs(),
                        ),
                        
                        column(6,
-                              plotOutput("summary_plot")
+                              plotOutput("inc_summary_plot", height = "700px")
                               
                               )
+                       
+                     ),
+                     # br()
+                     
+                   )
+            )
+            
+            
+          ), 
+          
+          br(),
+          
+          fluidRow(
+            column(12, 
+                   wellPanel(
+                     # h3("Confirmed cases", style = "text-decoration:underline"),
+                     h3("Confirmed, deaths and recovered cases - cumulative", style = ""),
+                     br(),
+                     fluidRow(
+                       column(2, 
+                              pickerInput(
+                                # width = "100%",
+                                inputId = "country2",
+                                label = "Country:",
+                                # choices = c("Canada", "More coming soon"),
+                                choices = countries_list,
+                                selected = "Canada",
+                                multiple = F
+                                # choicesOpt = list(
+                                #   disabled = c("Canada", "More coming soon") %in% c("More coming soon")
+                                # )
+                              )
+                       ),
+                       
+                       column(6,
+                              plotOutput("cum_summary_plot", height = "700px")
+                              
+                       )
                        
                      ),
                      br()

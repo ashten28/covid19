@@ -18,6 +18,10 @@ library(ggplot2)
 library(ggrepel)
 library(lubridate)
 library(tidyr)
+library(sysfonts)
+
+# font_add_google("Schoolbell", "bell")
+# showtext::showtext_auto()
 
 # theme pallete
 # theme_pallete <- 
@@ -25,6 +29,7 @@ library(tidyr)
 # 
 # scales::show_col(theme_pallete)
 
+sysfonts::font_add_google("Montserrat", "Montserrat")
 
 # ====================================== #
 # ------      data from github   -------#
