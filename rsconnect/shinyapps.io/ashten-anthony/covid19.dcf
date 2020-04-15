@@ -5,6 +5,8 @@ account: ashten-anthony
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 2100353
-bundleId: 3000557
+bundleId: 3003550
 url: https://ashten-anthony.shinyapps.io/covid19/
-when: 1586626363.53224
+when: 1586708455.77142
+asMultiple: FALSE
+asStatic: FALSE

@@ -2,6 +2,10 @@
 
 fluidPage(useShinyjs(), 
           theme = shinytheme("yeti"),
+          tags$link(href = "https://fonts.googleapis.com/css?family=Karla:400,700|Fira+Mono&display=fallback", rel = "stylesheet"),
+          # tags$link(rel = "stylesheet", type = "text/css", href = "style.css"),
+          
+          includeCSS("styles.css"),
           
           fluidRow(
             column(8, 
@@ -23,7 +27,7 @@ fluidPage(useShinyjs(),
             column(12, 
                    wellPanel(
                      # h3("Confirmed cases", style = "text-decoration:underline"),
-                     h3("Confirmed, deaths and recovered cases - incremental", style = ""),
+                     h3("Confirmed, deaths and recovered cases - by country", style = ""),
                      br(),
                      fluidRow(
                        column(2, 
@@ -41,7 +45,7 @@ fluidPage(useShinyjs(),
                               )
                        ),
                        
-                       column(6,
+                       column(8,
                               plotOutput("inc_summary_plot", height = "700px")
                               
                               )
@@ -61,7 +65,7 @@ fluidPage(useShinyjs(),
             column(12, 
                    wellPanel(
                      # h3("Confirmed cases", style = "text-decoration:underline"),
-                     h3("Confirmed, deaths and recovered cases - cumulative", style = ""),
+                     h3("Confirmed, deaths and recovered cases - summary table", style = ""),
                      br(),
                      fluidRow(
                        column(2, 
@@ -71,16 +75,17 @@ fluidPage(useShinyjs(),
                                 label = "Country:",
                                 # choices = c("Canada", "More coming soon"),
                                 choices = countries_list,
-                                selected = "Canada",
-                                multiple = F
+                                selected = countries_list,
+                                multiple = TRUE,
+                                options = list(`actions-box` = TRUE), 
                                 # choicesOpt = list(
                                 #   disabled = c("Canada", "More coming soon") %in% c("More coming soon")
                                 # )
                               )
                        ),
                        
-                       column(6,
-                              plotOutput("cum_summary_plot", height = "700px")
+                       column(8,
+                              reactableOutput("summary_table")
                               
                        )
                        

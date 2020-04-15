@@ -7,18 +7,26 @@ options(shiny.launch.browser = TRUE)
 
 # r packages used
 library(dplyr)
+library(tidyr)
 library(stringr)
+library(lubridate)
+
 library(shiny)
-library(scales)
 library(shinydashboard)
 library(shinythemes)
 library(shinyWidgets)
 library(shinyjs)
+
 library(ggplot2)
 library(ggrepel)
-library(lubridate)
-library(tidyr)
-library(sysfonts)
+library(scales)
+library(patchwork)
+
+library(reactable)
+library(sparkline)
+
+library(showtext)
+library(curl)
 
 # font_add_google("Schoolbell", "bell")
 # showtext::showtext_auto()
@@ -29,7 +37,8 @@ library(sysfonts)
 # 
 # scales::show_col(theme_pallete)
 
-sysfonts::font_add_google("Montserrat", "Montserrat")
+font_add_google("Montserrat", "Montserrat")
+showtext_auto()
 
 # ====================================== #
 # ------      data from github   -------#
@@ -52,7 +61,17 @@ countries_list <-
 
 covid19_data_latest <-
   covid19_data %>% 
-  filter(report_date == max(report_date))
+  group_by(country_region, report_date) %>%
+  summarize(
+    inc_confirmed = sum(inc_confirmed),
+    inc_deaths    = sum(inc_deaths),
+    inc_recovered = sum(inc_recovered),
+    cum_confirmed = sum(cum_confirmed),
+    cum_deaths    = sum(cum_deaths),
+    cum_recovered = sum(cum_recovered)
+  ) %>% 
+  ungroup() %>% 
+  mutate(day = row_number()) 
 
 total_confirmed <- sum(covid19_data_latest$cum_confirmed)
 total_deaths    <- sum(covid19_data_latest$cum_deaths)
