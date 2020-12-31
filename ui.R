@@ -37,7 +37,7 @@ fluidPage(useShinyjs(),
                                 label = "Country:",
                                 # choices = c("Canada", "More coming soon"),
                                 choices = countries_list,
-                                selected = "Canada",
+                                selected = "Malaysia",
                                 multiple = F
                                 # choicesOpt = list(
                                 #   disabled = c("Canada", "More coming soon") %in% c("More coming soon")

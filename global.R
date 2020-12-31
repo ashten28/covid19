@@ -10,21 +10,17 @@ library(dplyr)
 library(tidyr)
 library(stringr)
 library(lubridate)
-
 library(shiny)
 library(shinydashboard)
 library(shinythemes)
 library(shinyWidgets)
 library(shinyjs)
-
 library(ggplot2)
 library(ggrepel)
 library(scales)
 library(patchwork)
-
 library(reactable)
 library(sparkline)
-
 library(showtext)
 library(curl)
 
@@ -44,13 +40,21 @@ showtext_auto()
 # ------      data from github   -------#
 # ====================================== #
 
+# covid19_data <- 
+#   load("www/data/COVID-19.RData")
+# covid19_data2 <- 
+#   read.csv(text = RCurl::getURL("https://raw.githubusercontent.com/ashten28/covid19_analysis/master/01_data/covid19_daily_cases_cleaned.csv")) %>%
+#   as_tibble() %>% 
+#   mutate(
+#     report_date = as.Date(as.character(report_date))
+#   )
+
 covid19_data <- 
-  read.csv(text = RCurl::getURL("https://raw.githubusercontent.com/ashten28/covid19_analysis/master/01_data/covid19_daily_cases_cleaned.csv")) %>% 
+  read.csv("www/data/covid19_daily_cases_cleaned.csv") %>%
   as_tibble() %>% 
   mutate(
     report_date = as.Date(as.character(report_date))
   )
-  
   
 countries_list <-
   covid19_data %>% 

@@ -98,6 +98,8 @@ server <- function(input, output, session){
       covid19_data_selected_long %>% 
       filter(day == max(day))
     
+    day_max <- max(covid19_data_selected_point$day)
+    
     # first plot - line plot
     p1 <-
       covid19_data_selected_long %>% 
@@ -122,7 +124,8 @@ server <- function(input, output, session){
       geom_hline(yintercept = 0, alpha = 0.2) +
       # scale_colour_manual(values = c("#003972", "#d11d53", "#006734"))+
       scale_colour_manual(values = c("#003972", "#d11d53", "#b3a400"))+
-      scale_x_continuous(limits = c(0, 90), breaks = seq(0, 80, by = 10), expand = c(0,0)) +
+      # scale_x_continuous(limits = c(0, 90), breaks = seq(0, 80, by = 10), expand = c(0,0)) +
+      scale_x_continuous(breaks = seq(0, day_max, by = 50), limits = c(0, day_max + 50), expand = c(0,0)) +
       # scale_y_continuous(limits = c(0, max(value)), expand = c(0, 0)) +
       # ylim(0, range) +
       # scale_y_continuous(breaks = c(12,24), expand = c(0,0)) +
