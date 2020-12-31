@@ -75,7 +75,7 @@ fluidPage(useShinyjs(),
                                 label = "Country:",
                                 # choices = c("Canada", "More coming soon"),
                                 choices = countries_list,
-                                selected = countries_list,
+                                selected = c("India", "Indonesia", "Malaysia", "Japan", "Vietnam", "Korea South", "Phillipines", "Sri Lanka", "Thailand", "Singapore"),
                                 multiple = TRUE,
                                 options = list(`actions-box` = TRUE), 
                                 # choicesOpt = list(
